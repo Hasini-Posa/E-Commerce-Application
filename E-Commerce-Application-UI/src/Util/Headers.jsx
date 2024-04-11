@@ -7,9 +7,12 @@ import { SiAmazonecs } from "react-icons/si";
 import { BsBoxSeam } from "react-icons/bs";
 import { HiOutlineCreditCard } from "react-icons/hi2";
 import { CiSearch } from "react-icons/ci";
+import { PiDotsThreeVertical } from "react-icons/pi";
+import { PiShoppingCart } from "react-icons/pi";
 
 const Headers = () => {
   let [isOpen,setIsOpen]=useState(false)
+  let [isHover,setIsHover]=useState(false)
   return (
     <>
     <div className='h-20 w-full flex items-center justify-center '>
@@ -17,11 +20,11 @@ const Headers = () => {
         <div className='  h-16 w-4/5  border-solid bg-white flex items-center justify-evenly'>
           <div className='  w-fit'>
             
-            <img  className=' ml-20 h-10' src="/src/Images/Flip_Logo.jpg" alt="" title='FlipKart'/>
+          <Link  to={"/"}> <img  className=' ml-20 h-10' src="/src/Images/Flip_Logo.jpg" alt="" title='FlipKart'/></Link> 
 
           </div>
           <div className='w-4/5'> 
-          <input   title='Search for Products, Brands and more' className='  font-medium h-10 w-full p-1 bg-sky-50 rounded-xl outline-none border-white' type="<CiSearch />"  placeholder=' Search for Products, Brands and More ' />
+          <input   title='Search for Products, Brands and more' className='  font-medium h-10 w-full p-1 bg-sky-50 rounded-xl outline-none border-white' type="search"  placeholder=' Search for Products, Brands and More ' />
           </div>
         </div>
         <div className=' h-16 w-2/5  bg-white flex items-center justify-around'>
@@ -32,7 +35,7 @@ const Headers = () => {
       <span
         className="cursor-pointer   flex items-center justify-center text-lg hover:text-white hover:bg-blue-500 p-3 hover:rounded-xl"
       >
-       <PiUserCircle/> Login
+       <PiUserCircle/> <Link to="/login"> Login</Link>
       </span>
       {isOpen && (
         <div className="absolute top-full left-0 mt-1 w-72 bg-white shadow-md p-4 ">
@@ -46,7 +49,7 @@ const Headers = () => {
                </Link>
             </li>
             <li className="mb-2 hover:bg-gray-100 flex items-center gap-2.5" title='My Profile'>
-            <PiUserCircle/><Link>My Profile</Link>
+            <PiUserCircle/><Link to={"/login"}>My Profile</Link>
             </li>
             <li className="mb-2 hover:bg-gray-100 p-1 flex items-center gap-2.5" title='Flipkart Plus Zone'>
             <SiAmazonecs /><Link>Flipkart Plus Zone</Link>
@@ -68,11 +71,38 @@ const Headers = () => {
       )}
     </div>
 
+           <div className='text-1g flex items-center' title='Cart'>
+           <PiShoppingCart /><Link>Cart</Link>
+           </div>
+
             <div className='text-lg' title='Become a Seller'>
-              <Link>Become a Seller</Link>
+              <Link to="/register"> Become a Seller</Link>
             </div> 
-  
-    
+           
+        
+           
+           <div title='Options' onMouseEnter={()=>{setIsHover(true)}} onMouseLeave={()=>{setIsHover(false)}}>
+            <span className='coursor-pointer p-4 flex itmes-center justify center text-1g'>
+            <Link><PiDotsThreeVertical /></Link>
+            </span>
+            {
+              isHover && (
+               <div className='absolute right-1 w-fit h-fir mr-10 bg-white  shadow-md p-2'>
+                <ul>
+                  <li title='Contact Us' className='mr-16 hover:bg-gray-100 p-1 flex items-center gap-2.5'>
+                    <Link>Contact Us</Link>
+                  </li>
+                  <li title='Terms & Conditions' className='mr-16 hover:bg-gray-100 p-1 flex items-center gap-2.5'>
+                    <Link>Terms & Conditions</Link>
+
+                  </li>
+                </ul>
+                </div>
+              )
+            }
+           </div>
+           
+          
         </div>
     </div>
     </>
